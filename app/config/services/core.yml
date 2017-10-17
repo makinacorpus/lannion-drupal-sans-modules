@@ -6,3 +6,8 @@ services:
         arguments: ['@router.dumper', '@lock', '@event_dispatcher', '@module_handler', '@controller_resolver', '@access_manager.check_provider']
         lazy: true
         tags: [{ name: needs_destruction }]
+
+    # @todo use a compiler pass instead
+    plugin.manager.menu.link:
+        class: MakinaCorpus\Lannion\Drupal\Menu\MenuLinkManager
+        arguments: ['@menu.tree_storage', '@menu_link.static.overrides', '@module_handler']

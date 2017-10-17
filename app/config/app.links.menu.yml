@@ -1,0 +1,4 @@
+app.first_route:
+    title: Ma première route
+    description: Ma toute première route avec un lien de menu
+    route_name: app.first_route
