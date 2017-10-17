@@ -1,0 +1,7 @@
+#!/bin/sh
+SCRIPTPATH=$(dirname "$0")
+SCRIPTPATH=$(realpath "$SCRIPTPATH")
+PROJECTPATH="$(dirname "$SCRIPTPATH")"
+DRUPALROOT="$(dirname "$SCRIPTPATH")/web"
+DRUSH="${SCRIPTPATH}/drush"
+$DRUSH --root="${DRUPALROOT}" "$@"
