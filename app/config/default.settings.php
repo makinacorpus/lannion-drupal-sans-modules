@@ -1,15 +1,43 @@
 <?php
 
+use Drupal\Component\PhpStorage\FileStorage;
+
+define('APP_ROOT', dirname($app_root));
+
 $databases['default']['default'] = array();
 
+/**
+ * Les vrais barbus sortent leur configuration de webroot.
+ *
+ * Et les autres tombent dans le piège.
+ */
 $config_directories = [
-    CONFIG_ACTIVE_DIRECTORY => dirname($app_root).'/app/config/active',
-    CONFIG_SYNC_DIRECTORY => dirname($app_root).'/app/config/sync',
+    CONFIG_ACTIVE_DIRECTORY => APP_ROOT.'/app/config/active',
+    CONFIG_SYNC_DIRECTORY => APP_ROOT.'/app/config/sync',
 ];
 
-$settings['container_yamls'][] = dirname($app_root).'/app/services.yml';
+/**
+ * On n'a pas besoin de mettre les services dans le répertoire sites/default.
+ *
+ * En plus, c'est vraiment très chiant de naviguer jusque là bas.
+ */
+$settings['container_yamls'][] = APP_ROOT.'/app/services.yml';
+
+/**
+ * Et pourquoi pas mettre ça dans un répertoire de cache, ailleurs ?
+ */
+$settings['php_storage']['default'] = [
+    'class' => FileStorage::class,
+    'directory' => APP_ROOT.'/var/cache',
+];
+
+/**
+ * On continue la configuration de notre environnement
+ */
+$config['system.file']['path']['temporary'] = APP_ROOT.'/var/tmp';
 
 $settings['hash_salt'] = 'mxH4-RXvavG__QIL4SDou7nUCQb2LqJSUCY8G5fHgKjMJ-v1DFD1XN_BemnBscKQD-OcSupb-w';
+
 # $settings['deployment_identifier'] = \Drupal::VERSION;
 $settings['update_free_access'] = false;
 # $settings['http_client_config']['proxy']['http'] = 'http://proxy_user:proxy_pass@example.com:8080';
@@ -53,7 +81,6 @@ if ($settings['hash_salt']) {
 
 # $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
 
-$config['system.file']['path']['temporary'] = dirname($app_root).'/var/tmp';
 # $config['system.site']['name'] = 'My Drupal site';
 # $config['system.theme']['default'] = 'stark';
 # $config['user.settings']['anonymous'] = 'Visitor';
