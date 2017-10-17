@@ -1,8 +1,9 @@
 <?php
 
 use Drupal\Component\PhpStorage\FileStorage;
+use MakinaCorpus\Lannion\Lannion;
 
-define('APP_ROOT', dirname($app_root));
+define('APP_ROOT', Lannion::getProjectRoot());
 
 $databases['default']['default'] = array();
 
@@ -23,6 +24,11 @@ $config_directories = [
  */
 $settings['container_yamls'][] = APP_ROOT.'/app/parameters.yml';
 $settings['container_yamls'][] = APP_ROOT.'/app/config/services/core.yml';
+
+/**
+ * Un des derniers usages des globals, dommage.
+ */
+$GLOBALS['conf']['container_service_providers']['Lannion'] = Lannion::class;
 
 /**
  * Et pourquoi pas mettre ça dans un répertoire de cache, ailleurs ?
