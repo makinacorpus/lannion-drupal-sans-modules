@@ -22,6 +22,7 @@ $config_directories = [
  * En plus, c'est vraiment très chiant de naviguer jusque là bas.
  */
 $settings['container_yamls'][] = APP_ROOT.'/app/services.yml';
+$settings['container_yamls'][] = APP_ROOT.'/app/config/services/core.yml';
 
 /**
  * Et pourquoi pas mettre ça dans un répertoire de cache, ailleurs ?

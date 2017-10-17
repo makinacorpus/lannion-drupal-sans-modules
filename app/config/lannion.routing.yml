@@ -1,0 +1,7 @@
+app_:
+    path: '/my-first-route'
+    defaults:
+        _controller: 'MakinaCorpus\Lannion\Controller\IndexController::myFirstRoute'
+        _title: 'Client error'
+    requirements:
+        _access: 'TRUE'

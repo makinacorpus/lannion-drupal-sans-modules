@@ -1,3 +1,7 @@
+# @todo make me work
+# imports:
+#   - { resource: services/core.yml }
+
 parameters:
   session.storage.options:
     # Default ini options for sessions.
