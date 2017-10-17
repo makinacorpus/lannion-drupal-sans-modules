@@ -78,7 +78,8 @@ var/logs
 var/tmp
 app/cache
 app/logs
-$WWW_DIR/sites/*/files"
+$WWW_DIR/sites/*/files
+$WWW_DIR/sites/*/translations"
 
 DRUSH_WRITABLE="
 $WWW_DIR/sites/all/libraries
