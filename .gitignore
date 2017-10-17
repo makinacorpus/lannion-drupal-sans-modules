@@ -1,15 +1,9 @@
+!bin/fixperms.sh
 .buildpath
 .gitignore.swp
 .project
 .settings/
-bin/console
-bin/dcg
-bin/drupal
-bin/drush
-bin/php-parse
-bin/phpunit
-bin/psysh
-bin/robo
+bin/*
 etc/
 var/
 vendor/
