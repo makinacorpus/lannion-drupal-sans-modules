@@ -1,0 +1,16 @@
+.buildpath
+.gitignore.swp
+.project
+.settings/
+bin/console
+bin/dcg
+bin/drupal
+bin/drush
+bin/php-parse
+bin/phpunit
+bin/psysh
+bin/robo
+etc/
+var/
+vendor/
+web/core
