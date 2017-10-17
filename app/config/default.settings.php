@@ -21,7 +21,7 @@ $config_directories = [
  *
  * En plus, c'est vraiment très chiant de naviguer jusque là bas.
  */
-$settings['container_yamls'][] = APP_ROOT.'/app/services.yml';
+$settings['container_yamls'][] = APP_ROOT.'/app/parameters.yml';
 $settings['container_yamls'][] = APP_ROOT.'/app/config/services/core.yml';
 
 /**
@@ -31,6 +31,11 @@ $settings['php_storage']['default'] = [
     'class' => FileStorage::class,
     'directory' => APP_ROOT.'/var/cache',
 ];
+
+/**
+ * Ma home page custom.
+ */
+$config['system.site']['page']['front'] = '/contenu-recent';
 
 /**
  * On continue la configuration de notre environnement

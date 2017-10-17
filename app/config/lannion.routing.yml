@@ -1,7 +1,15 @@
-app_:
-    path: '/my-first-route'
+app.first_route:
+    path: /my-first-route
     defaults:
         _controller: 'MakinaCorpus\Lannion\Controller\IndexController::myFirstRoute'
-        _title: 'Client error'
+        _title: Ma première route
+    requirements:
+        _access: 'TRUE'
+
+app.contenu_recent:
+    path: /contenu-recent
+    defaults:
+        _controller: 'MakinaCorpus\Lannion\Controller\IndexController::contenuRecent'
+        _title: Contenu récent
     requirements:
         _access: 'TRUE'

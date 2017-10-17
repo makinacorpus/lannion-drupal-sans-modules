@@ -1,0 +1,11 @@
+uuid: 42b0dc8d-e438-4a79-9a9b-fb92a92adfc5
+langcode: fr
+status: true
+dependencies: {  }
+name: Article
+type: article
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true
