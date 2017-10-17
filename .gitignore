@@ -4,6 +4,7 @@
 .gitignore.swp
 .project
 .settings/
+app/config/system
 bin/*
 etc/
 var/
