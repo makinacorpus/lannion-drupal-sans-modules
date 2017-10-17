@@ -1,3 +1,3 @@
+mkdir -p var/cache var/log var/tmp var/private
 mkdir -p web/sites/default/files/translations
 cp app/config/default.settings.php web/sites/default/settings.php
-cp app/config/default.services.yml web/sites/default/services.yml
