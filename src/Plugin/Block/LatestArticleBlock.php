@@ -52,17 +52,19 @@ class LatestArticleBlock extends BlockBase implements ContainerFactoryPluginInte
             ->execute()
         ;
 
-        if (!$idList) {
-            return ['#markup' => '<p>Ce site est désespérement vide&nbsp;!</p>'];
-        }
-
-        return $this
-            ->entityManager
-            ->getViewBuilder('node')
-            ->viewMultiple(
-                $storage->loadMultiple($idList),
-                'sidebar_block'
-            )
+        return [
+            '#type'     => 'twig_template',
+            '#template' => '@lannion/block/latest-article.html.twig',
+            '#context'  => [
+                'nodes' => $this
+                    ->entityManager
+                    ->getViewBuilder('node')
+                    ->viewMultiple(
+                        $storage->loadMultiple($idList),
+                        'sidebar_block'
+                    )
+                ]
+            ]
         ;
     }
 }
