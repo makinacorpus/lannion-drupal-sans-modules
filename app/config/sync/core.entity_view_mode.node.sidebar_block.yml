@@ -1,0 +1,10 @@
+uuid: f6b975d1-c5e6-4ff6-a618-52185e4fcb28
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+id: node.sidebar_block
+label: 'Sidebar block'
+targetEntityType: node
+cache: true

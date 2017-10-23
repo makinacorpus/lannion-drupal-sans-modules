@@ -1,0 +1,30 @@
+uuid: 3ec6e0a3-ae91-4121-8960-07ee838d6ca3
+langcode: fr
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.sidebar_block
+    - field.field.node.article.body
+    - field.field.node.article.field_image
+    - node.type.article
+  module:
+    - image
+    - user
+id: node.article.sidebar_block
+targetEntityType: node
+bundle: article
+mode: sidebar_block
+content:
+  field_image:
+    weight: 0
+    label: visually_hidden
+    settings:
+      image_style: ''
+      image_link: content
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  body: true
+  langcode: true
+  links: true

@@ -1,0 +1,26 @@
+uuid: e08f0b8b-821b-4a3a-ae73-4b37e4ed8d99
+langcode: fr
+status: true
+dependencies:
+  module:
+    - null
+    - system
+  theme:
+    - bartik
+id: latestarticleblock
+theme: bartik
+region: sidebar_second
+weight: 0
+provider: null
+plugin: latest_article
+settings:
+  id: latest_article
+  label: 'Latest article block'
+  provider: null
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
