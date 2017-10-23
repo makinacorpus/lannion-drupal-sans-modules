@@ -1,7 +1,17 @@
-# @todo make me work
+#
+# WARNING
+#
+#   Imports can't work with Drupal 8, they basically copy/pasted code from
+#   Symfony's config component, but deactivated some features (just commented
+#   them out directly in the copy/pasted code).
+#
+#   This is very, very stupid.
+#
+#   So basically, you can't do that:
+#
 # imports:
 #   - { resource: services/core.yml }
-
+#
 parameters:
   session.storage.options:
     # Default ini options for sessions.

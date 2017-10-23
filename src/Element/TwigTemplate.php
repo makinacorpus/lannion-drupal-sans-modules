@@ -5,12 +5,7 @@ namespace MakinaCorpus\Lannion\Element;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Provides an example element.
- *
- * @todo
- *   document me
- *   add twig namespace for the project root (app/templates)
- *   add twig namespaces for controllers maybe ?
+ * Provides twig direct rendering as Drupal render element.
  *
  * @RenderElement("twig_template")
  */
