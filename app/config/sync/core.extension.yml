@@ -16,6 +16,7 @@ module:
   language: 0
   link: 0
   locale: 0
+  menu_ui: 0
   node: 0
   options: 0
   page_cache: 0
@@ -24,6 +25,7 @@ module:
   text: 0
   toolbar: 0
   user: 0
+  menu_link_content: 1
   content_translation: 10
   minimal: 1000
 theme:
