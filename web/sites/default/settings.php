@@ -3,7 +3,9 @@
 use Drupal\Component\PhpStorage\FileStorage;
 use MakinaCorpus\Lannion\Lannion;
 
-define('APP_ROOT', Lannion::getProjectRoot());
+if (!defined('APP_ROOT')) {
+    define('APP_ROOT', Lannion::getProjectRoot());
+}
 
 $config_directories = [
     CONFIG_ACTIVE_DIRECTORY => APP_ROOT.'/app/config/active',

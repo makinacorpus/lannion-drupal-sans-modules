@@ -2874,11 +2874,9 @@ a){var b=F.exec(a);b&&(b[1]=(b[1]||"").toLowerCase(),b[3]=b[3]&&new RegExp("(?:^
 <span class="k">use</span> <span class="nx">MakinaCorpus\Lannion\Lannion</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Request</span><span class="p">;</span>
 
-<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;APP_ROOT&#39;</span><span class="p">,</span> <span class="nx">Lannion</span><span class="o">::</span><span class="na">getProjectRoot</span><span class="p">());</span>
-
 <span class="nv">$autoloader</span> <span class="o">=</span> <span class="k">require_once</span> <span class="nb">dirname</span><span class="p">(</span><span class="no">__DIR__</span><span class="p">)</span><span class="o">.</span><span class="s1">&#39;/vendor/autoload.php&#39;</span><span class="p">;</span>
 
-<span class="nv">$kernel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DrupalKernel</span><span class="p">(</span><span class="s1">&#39;prod&#39;</span><span class="p">,</span> <span class="nv">$autoloader</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="nx">APP_ROOT</span><span class="p">);</span>
+<span class="nv">$kernel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DrupalKernel</span><span class="p">(</span><span class="s1">&#39;prod&#39;</span><span class="p">,</span> <span class="nv">$autoloader</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="nx">Lannion</span><span class="o">::</span><span class="na">getProjectRoot</span><span class="p">()</span><span class="o">.</span><span class="s1">&#39;/web&#39;</span><span class="p">);</span>
 
 <span class="nv">$request</span> <span class="o">=</span> <span class="nx">Request</span><span class="o">::</span><span class="na">createFromGlobals</span><span class="p">();</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$kernel</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
