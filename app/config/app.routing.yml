@@ -13,3 +13,88 @@ app.contenu_recent:
         _title: Contenu récent
     requirements:
         _access: 'TRUE'
+
+
+###############################################################################
+#
+# Voiture bundle
+#
+###############################################################################
+
+entity.voiture_model.collection:
+  path: /admin/structure/voiture-model
+  defaults:
+    _entity_list: voiture_model
+    _title: Car models
+  requirements:
+    _permission: administer content types
+
+entity.voiture_model.add:
+  path: /admin/structure/voiture-model/add
+  defaults:
+    _entity_form: voiture_model.add
+    _title: Add content type
+  requirements:
+    _permission: administer content types
+
+entity.voiture_model.edit_form:
+  path: /admin/structure/voiture-model/manage/{voiture_model}
+  defaults:
+    _entity_form: voiture_model.edit
+    _title: Upgrade this model
+  requirements:
+    _permission: administer content types
+
+entity.voiture_model.delete_form:
+  path: /admin/structure/voiture-model/manage/{voiture_model}/delete
+  defaults:
+    _entity_form: voiture_model.delete
+    _title: Delete
+  requirements:
+    _entity_access: voiture_model.delete
+
+###############################################################################
+#
+# Voiture entity
+#
+###############################################################################
+
+entity.voiture.canonical:
+  path: /voiture/{voiture}
+  defaults:
+    _entity_view: voiture
+    _title: Car
+  requirements:
+    _entity_access: voiture.view
+
+entity.voiture.collection:
+  path: /voiture/list
+  defaults:
+    _entity_list: voiture
+    _title: Cars
+  requirements:
+    _permission: administer voiture entity
+
+entity.voiture.edit_form:
+  path: /voiture/add
+  defaults:
+    _entity_form: voiture.add
+    _title: Brand new car
+  requirements:
+    _entity_create_access: voiture
+
+entity.voiture.edit_form:
+  path: /voiture/{voiture}/edit
+  defaults:
+    _entity_form: voiture.edit
+    _title: Repair car
+  requirements:
+    _entity_access: voiture.edit
+
+entity.voiture.delete_form:
+  path: /voiture/{voiture}/delete
+  defaults:
+    _entity_form: voiture.delete
+    _title: Send car to trash
+  requirements:
+    _entity_access: voiture.delete
