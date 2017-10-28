@@ -52,7 +52,7 @@
     },
     "autoload-dev" : {
         "psr-4" : {
-            "Tests\\" : "tests/"
+            "MakinaCorpus\\Lannion\\Tests\\" : "tests/"
         }
     },
     "autoload" : {

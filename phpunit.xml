@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.0/phpunit.xsd"
+    backupGlobals="false" colors="true" bootstrap="web/core/tests/bootstrap.php"
+    convertErrorsToExceptions="false" convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutChangesToGlobalState="true"
+    checkForUnintentionallyCoveredCode="false"
+>
+    <testsuites>
+        <testsuite name="Lannion controllers">
+            <directory>./tests/Controller</directory>
+        </testsuite>
+    </testsuites>
+
+    <listeners>
+        <listener class="\Symfony\Bridge\PhpUnit\SymfonyTestsListener">
+        </listener>
+        <listener class="\Drupal\Tests\Listeners\DrupalStandardsListener">
+        </listener>
+        <listener class="\Drupal\Tests\Listeners\DrupalComponentTestListener">
+        </listener>
+    </listeners>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>./</directory>
+            <exclude>
+                <directory>./app</directory>
+                <directory>./tests</directory>
+                <directory>./vendor</directory>
+                <directory>./bin</directory>
+                <directory>./docs</directory>
+                <directory>./var</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+  <php>
+      <ini name="error_reporting" value="32767"/>
+      <ini name="memory_limit" value="-1"/>
+      <env name="SIMPLETEST_BASE_URL" value="http://d8-lannion.guinevere"/>
+      <!-- Example SIMPLETEST_DB value: mysql://username:password@localhost/databasename#table_prefix -->
+      <env name="SIMPLETEST_DB" value="pgsql://d8lannion:d8lannion@localhost/d8lannion-test"/>
+      <env name="var/test-output" value=""/>
+  </php>
+</phpunit>
