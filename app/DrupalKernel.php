@@ -84,7 +84,7 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
     {
         $this->classLoader = $class_loader;
         $this->rootDir = __DIR__;
-
+$environment = 'dev';
         if ($app_root === NULL) {
             $app_root = dirname($this->rootDir).'/web';
         }
@@ -104,34 +104,32 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
 
     public function registerBundles()
     {
-        /*
         $bundles = [
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Goat\Bundle\GoatBundle(),
-            new Goat\AccountBundle\GoatAccountBundle(),
-            //new MakinaCorpus\RedisBundle\RedisBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
-            new MakinaCorpus\Calista\CalistaBundle(),
-            new AppBundle\AppBundle(),
-            new GestionBundle\GestionBundle(),
+            new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
+            new \Symfony\Bundle\TwigBundle\TwigBundle(),
+//             new Symfony\Bundle\MonologBundle\MonologBundle(),
+//             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+//             new Goat\Bundle\GoatBundle(),
+//             new Goat\AccountBundle\GoatAccountBundle(),
+//             //new MakinaCorpus\RedisBundle\RedisBundle(),
+//             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+//             new FOS\RestBundle\FOSRestBundle(),
+//             new JMS\SerializerBundle\JMSSerializerBundle(),
+//             new MakinaCorpus\Calista\CalistaBundle(),
+//             new AppBundle\AppBundle(),
+//             new GestionBundle\GestionBundle(),
+            new \MakinaCorpus\Drupal\Sf\DrupalBundle()
         ];
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
-            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
-            $bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new \Symfony\Bundle\DebugBundle\DebugBundle();
+//            $bundles[] = new \Symfony\Bundle\WebServerBundle\WebServerBundle();
+            $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+//            $bundles[] = new \Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+//            $bundles[] = new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
-        return $bundles;
-         */
 
-        return [];
+        return $bundles;
     }
 
     /**
@@ -139,22 +137,12 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        /*
-        // Reproduce the config_ENV.yml file from Symfony, but keep it
-        // optional instead of forcing its usage
         $customConfigFile = $this->rootDir.'/config/config_'.$this->getEnvironment().'.yml';
         if (!file_exists($customConfigFile)) {
-            // Else attempt with a default one
             $customConfigFile = $this->rootDir.'/config/config.yml';
-        }
-        if (!file_exists($customConfigFile)) {
-            // If no file is provided by the user, just use the default one
-            // that provide sensible defaults for everything to work fine
-            $customConfigFile = __DIR__.'/../Resources/config/config.yml';
         }
 
         $loader->load($customConfigFile);
-         */
     }
 
     /**
@@ -262,6 +250,7 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
 
         // @todo fixme
         $parameters['default_backend'] = 'pgsql';
+        $parameters['secret'] = Settings::get('hash_salt');
 
         return $parameters;
     }
@@ -282,12 +271,6 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
     protected function buildContainer()
     {
         $container = parent::buildContainer();
-//default_backend
-//         $databaseDefinition = new Definition(Connection::class);
-//         $databaseDefinition->setFactory('Drupal\Core\Database\Database::getConnection');
-//         $databaseDefinition->setArguments(['default']);
-//         $databaseDefinition->setPublic(true);
-//         $container->addDefinitions(['database' => $databaseDefinition]);
 
         // Add drupal synthetic services from here, because stupid Drupal is
         // stupid, and some compiler pass will actually attempt to get services

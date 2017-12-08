@@ -1,0 +1,31 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    encoders:
+        Goat\AccountBundle\Security\User\GoatUser: bcrypt
+
+    # http://symfony.com/doc/current/book/security.html#hierarchical-roles
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        goat:
+            id: goat_account.account_provider
+
+    # the main part of the security, where you can set up firewalls
+    # for specific sections of your app
+    firewalls:
+
+        # disables authentication for assets and the profiler,
+        # adapt it according to your needs
+        dev:
+            pattern:                  ^/(_(profiler|wdt)|css|images|js)/
+            security:                 false
+
+    access_control:
+        - { path: "^/u/login/one", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/app, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/dav, roles: IS_AUTHENTICATED_FULLY }

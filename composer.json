@@ -12,6 +12,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type" : "vcs",
+            "url" : "git@github.com:makinacorpus/drupal-sf-d8.git"
         }
     ],
     "require": {
@@ -28,6 +32,7 @@
         "drupal/core": "8.4.x-dev as 8.4",
         "drush/drush": "~9.0",
         "erusev/parsedown": "^1.6",
+        "makinacorpus/drupal-sf-d8": "dev-master",
         "symfony/symfony": "~3.2",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
@@ -77,7 +82,8 @@
             "web//core/includes/entity.inc"
         ],
         "psr-4" : {
-            "MakinaCorpus\\Lannion\\" : "src"
+            "MakinaCorpus\\Lannion\\" : "src",
+            "MakinaCorpus\\Drupal\\Sf\\" : "vendor/makinacorpus/drupal-sf-d8"
         }
     },
     "extra": {
