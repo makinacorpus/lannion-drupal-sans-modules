@@ -9,7 +9,6 @@ use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Config\BootstrapConfigStorageFactory;
 use Drupal\Core\Config\NullStorage;
-use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Database;
 use Drupal\Core\DependencyInjection\ServiceModifierInterface;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
@@ -25,11 +24,10 @@ use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\TerminableInterface;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -94,6 +92,14 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
         $this->root = $app_root;
 
         parent::__construct($environment, true /* always debug for now */);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheDir()
+    {
+        return $this->getProjectDir().'/var/cache/'.$this->environment;
     }
 
     public function registerBundles()
@@ -228,23 +234,23 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
      */
     public function boot()
     {
-      if ($this->booted) {
-          return $this;
-      }
-      if (!$this->sitePath) {
-          throw new \Exception('Kernel does not have site path set before calling boot()');
-      }
+        if ($this->booted) {
+            return $this;
+        }
+        if (!$this->sitePath) {
+            throw new \Exception('Kernel does not have site path set before calling boot()');
+        }
 
-      // Initialize the FileCacheFactory component. We have to do it here instead
-      // of in \Drupal\Component\FileCache\FileCacheFactory because we can not use
-      // the Settings object in a component.
-      $configuration = Settings::get('file_cache');
-      FileCacheFactory::setConfiguration($configuration);
-      FileCacheFactory::setPrefix(Settings::getApcuPrefix('file_cache', $this->root));
+        // Initialize the FileCacheFactory component. We have to do it here instead
+        // of in \Drupal\Component\FileCache\FileCacheFactory because we can not use
+        // the Settings object in a component.
+        $configuration = Settings::get('file_cache');
+        FileCacheFactory::setConfiguration($configuration);
+        FileCacheFactory::setPrefix(Settings::getApcuPrefix('file_cache', $this->root));
 
-      parent::boot();
+        parent::boot();
 
-      return $this;
+        return $this;
     }
 
     /**
@@ -407,8 +413,10 @@ class DrupalKernel extends Kernel implements DrupalKernelInterface, TerminableIn
      * This is where we're going to do black magic, and register Drupal over
      * a complete Symfony kernel. Prey hard, stay strong, don't panic.
      */
-    protected function build(ContainerBuilder $container)
+    protected function prepareContainer(ContainerBuilder $container)
     {
+        parent::prepareContainer($container);
+
         $this->initializeServiceProviders();
 
         /*
