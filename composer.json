@@ -25,9 +25,22 @@
         "doctrine/inflector": "<1.2",
         "doctrine/orm": "^2.5",
         "drupal/console": "^1.0.1",
-        "drupal/core": "~8.4",
+        "drupal/core": "dev-8.4.x as 8.4",
         "drush/drush": "~9.0",
         "erusev/parsedown": "^1.6",
+        "symfony/class-loader": "~3.4",
+        "symfony/console": "~3.4",
+        "symfony/dependency-injection": "~3.4",
+        "symfony/event-dispatcher": "~3.4",
+        "symfony/http-foundation": "~3.4",
+        "symfony/http-kernel": "~3.4",
+        "symfony/polyfill-iconv": "^1.0",
+        "symfony/process": "~3.4",
+        "symfony/routing": "~3.4",
+        "symfony/serializer": "~3.4",
+        "symfony/translation": "~3.4",
+        "symfony/validator": "~3.4",
+        "symfony/yaml": "~3.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
     },
@@ -56,6 +69,25 @@
         }
     },
     "autoload" : {
+        "classmap": [
+            "app/DrupalKernel.php",
+            "app/DrushDrupalKernel.php"
+        ],
+        "files": [
+            "web/core/includes/common.inc",
+            "web//core/includes/database.inc",
+            "web//core/includes/module.inc",
+            "web//core/includes/theme.inc",
+            "web//core/includes/pager.inc",
+            "web//core/includes/menu.inc",
+            "web//core/includes/tablesort.inc",
+            "web//core/includes/file.inc",
+            "web//core/includes/unicode.inc",
+            "web//core/includes/form.inc",
+            "web//core/includes/errors.inc",
+            "web//core/includes/schema.inc",
+            "web//core/includes/entity.inc"
+        ],
         "psr-4" : {
             "MakinaCorpus\\Lannion\\" : "src"
         }

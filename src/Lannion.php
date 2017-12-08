@@ -2,8 +2,8 @@
 
 namespace MakinaCorpus\Lannion;
 
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderBase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class Lannion extends ServiceProviderBase
 {
